@@ -1,6 +1,1 @@
-Thanks for downloading this template!
-
-Template Name: DevFolio
-Template URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
-Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
+### Data Scientist skilled in Python, data analysis, data visualization, SQL, and machine learning. I work across the data pipeline, from cleaning and modeling to presenting insights that actually make sense to humans
