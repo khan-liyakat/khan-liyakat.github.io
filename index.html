@@ -678,9 +678,9 @@
         </div>
 
         <!-- <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300"> -->
-          <form class="php-email-form" data-aos="fade-up" data-aos-delay="300" onsubmit="sendWhatsApp(); return false;">
-            <!-- <form action="https://www.erkhanliyakat.byethost22.com/forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300"> -->
+         <form id="contact-form" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
 
+           
           <div class="row gy-4">
 
             <div class="col-md-6">
@@ -762,24 +762,28 @@
   <script src="assets/js/main.js"></script>
   <!-- WhatsApp -->
    <script>
-function sendWhatsApp() {
-    let name = document.querySelector("input[name='name']").value;
-    let email = document.querySelector("input[name='email']").value;
-    let subject = document.querySelector("input[name='subject']").value;
-    let message = document.querySelector("textarea[name='message']").value;
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-    let phone = "your_number";  // your WhatsApp number
+    const form = e.target;
+    const data = new FormData(form);
 
-    let url = "https://wa.me/" + phone + "?text="
-      + "*Name:* " + name + "%0A"
-      + "*Email:* " + email + "%0A"
-      + "*Subject:* " + subject + "%0A"
-      + "*Message:* " + message;
-
-    window.open(url, "_blank");
-}
+    fetch("https://formspree.io/f/mqezyndk", {
+        method: "POST",
+        body: data,
+        headers: { "Accept": "application/json" }
+    }).then(res => {
+        if (res.ok) {
+            form.querySelector(".sent-message").style.display = "block";
+            form.reset();
+        } else {
+            form.querySelector(".error-message").innerText = "Failed to send message.";
+            form.querySelector(".error-message").style.display = "block";
+        }
+    });
+});
 </script>
-<!-- WhatsApp end -->
+
 
 </body>
 
