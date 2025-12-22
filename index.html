@@ -761,6 +761,31 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
+<script>
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    fetch("https://formspree.io/f/mqezyndk", {
+        method: "POST",
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            alert("✅ Message sent successfully!");
+            form.reset();
+        } else {
+            alert("❌ Failed to send message.");
+        }
+    }).catch(() => {
+        alert("⚠️ Network error. Try again.");
+    });
+});
+</script>
 
 </body>
 
